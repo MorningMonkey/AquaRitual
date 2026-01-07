@@ -11,6 +11,13 @@
 - 最優先: iOS
 - 画面前提: モバイル優先 / レスポンシブ対応
 
+> [!IMPORTANT]
+> このリポジトリは **Convoy 管理下**で運用します。ワークフロー定義（`.agent/`）は本リポジトリには含めず、Convoy本体のワークフローを参照して進行します。
+
+> [!NOTE]
+> 実行フロー: `/branding-intake` → brief確定 → `/update-convoy-identity` → `/review-repo-quality` → 実装（例: `/build-app-simple`）
+
+
 ## Quick Start
 ```bash
 # Install dependencies
@@ -30,4 +37,8 @@ pnpm dev
 ## Docs
 - [Branding Brief](assets/branding/aqua-ritual/brief.md)
 - [Architecture](docs/architecture.drawio)
+
+## Convoy Workflows
+- このリポジトリには `.agent/` を含めません（Convoy本体リポジトリ側を参照）。
+- ワークフロー: Convoy本体の `.agent/workflows/` を参照（例: branding-intake / update-convoy-identity / review-repo-quality）
 
