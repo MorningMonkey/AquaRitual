@@ -28,11 +28,36 @@ pnpm dev
 ```
 
 ## Core Features
+- **iPhone Native**: SwiftUI によるネイティブ実装・動画背景サポート
 - **Habit Streaks**: 日々の習慣をストリークとして可視化
-- **Aquarium Growth**: 習慣の継続により水槽が豊かに育つ
-- **Calm & Focus**: 癒しと集中を提供する静かなUI
-- **iOS First**: iOSアプリを最優先（Web/PWAは副次チャネルとして提供）
-- **Responsive Web**: Webはモバイル優先でレスポンシブ対応
+- **Aquarium Focus**: 1080p動画背景による圧倒的な水槽体験
+- **Focus Timer**: 集中セッション用タイマー（HUD）
+- **Glass UI**: 視認性を確保するガラスオーバーレイ
+- **Web MVP**: Web版（Vanilla JS）も同梱
+
+## iOS App Build (SwiftUI)
+ソースコードは `ios/AquaRitual/` にあります。
+
+### 1. プロジェクト作成
+Xcode で新規プロジェクト（App / SwiftUI / Swift）を作成し、`AquaRitual` と命名します。
+`ios/AquaRitual/` 配下のファイル（Views, ViewModels, Resources 等）を Xcode プロジェクトに追加してください。
+
+### 2. 動画ファイルの配置
+`ios/AquaRitual/Resources/aquarium_loop_1080p.mp4` はプレースホルダーです。
+実機ビルドの前に、本物の動画ファイル（1920x1080, H.264/HEVC, 無音推奨）に差し替えてください。
+
+### 3. タイマー仕様
+- **Start**: カウントアップ開始
+- **Pause**: 一時停止（再開可能）
+- **Stop**: リセット（00:00に戻る）
+
+### 4. 報酬システム (Reward System)
+- **Fish**: 習慣達成（チェックON）で1日最大2匹まで魚がスポーンします（上限12匹）。
+- **Plants**: 今日の達成率（%）に応じて、水草の背丈が成長します。日付変更でリセット。
+- **Decor**: ストリーク（連続達成記録）に応じてデコレーションが解放されます。
+  - 7 Days: Rock (Small)
+  - 14 Days: Driftwood
+  - 30 Days: Shell
 
 ## Docs
 - [Branding Brief](assets/branding/aqua-ritual/brief.md)

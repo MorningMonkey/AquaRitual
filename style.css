@@ -1,0 +1,422 @@
+:root {
+    --bg-color: #e0f7fa;
+    --water-top: #e0f7fa;
+    --water-bottom: #4dd0e1;
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-main: #37474f;
+    --text-light: #78909c;
+    --accent-color: #00bcd4;
+    --sand-color: #f0e68c;
+    --rock-color: #78909c;
+    --plant-color: #66bb6a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Aquarium Layer (Z: 0) --- */
+#aquarium {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    /* UIの邪魔をしない */
+    overflow: hidden;
+}
+
+.water {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--water-top), var(--water-bottom));
+}
+
+.substrate {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    /* 画面下部10% */
+    background: linear-gradient(to top, #d7ccc8, var(--sand-color));
+    border-top-left-radius: 50% 20px;
+    border-top-right-radius: 50% 20px;
+    z-index: 10;
+}
+
+.rocks {
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
+    z-index: 11;
+}
+
+.rock {
+    background: var(--rock-color);
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+    position: absolute;
+    bottom: 0;
+}
+
+.rock-1 {
+    width: 80px;
+    height: 60px;
+    left: 0;
+}
+
+.rock-2 {
+    width: 50px;
+    height: 40px;
+    left: 60px;
+    background: #607d8b;
+}
+
+.plants {
+    position: absolute;
+    bottom: 9%;
+    /* 砂より少し上 */
+    right: 10%;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    z-index: 9;
+}
+
+.plant {
+    width: 10px;
+    background: var(--plant-color);
+    border-radius: 20px 20px 0 0;
+    transform-origin: bottom center;
+    /* Growth will be controlled by height style in JS */
+    height: 30px;
+    /* Default small */
+    transition: height 1s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Plant swaying animation */
+@keyframes sway {
+
+    0%,
+    100% {
+        transform: rotate(-5deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+}
+
+.plant.grown {
+    animation: sway 4s infinite ease-in-out;
+}
+
+.fish-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.fish {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #ff7043;
+    /* Orange tropical fish */
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.9;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.fish::before {
+    /* Tail */
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #ff7043;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+}
+
+/* Ambient Swimming Animations */
+@keyframes swimLeft {
+    0% {
+        transform: translateX(110vw) translateY(0);
+    }
+
+    50% {
+        transform: translateX(50vw) translateY(20px);
+    }
+
+    100% {
+        transform: translateX(-10vw) translateY(0);
+    }
+}
+
+@keyframes swimRight {
+    0% {
+        transform: translateX(-10vw) translateY(0) scaleX(-1);
+    }
+
+    /* Flip for right swim */
+    50% {
+        transform: translateX(50vw) translateY(-20px) scaleX(-1);
+    }
+
+    100% {
+        transform: translateX(110vw) translateY(0) scaleX(-1);
+    }
+}
+
+.fish-1 {
+    top: 30%;
+    animation: swimLeft 25s linear infinite;
+}
+
+.fish-2 {
+    top: 50%;
+    animation: swimRight 30s linear infinite;
+    animation-delay: 5s;
+    background: #ffee58;
+}
+
+.fish-2::before {
+    border-left-color: #ffee58;
+}
+
+.fish-3 {
+    top: 70%;
+    animation: swimLeft 20s linear infinite;
+    animation-delay: 10s;
+    background: #42a5f5;
+}
+
+.fish-3::before {
+    border-left-color: #42a5f5;
+}
+
+/* Boosted Fish (Active) */
+.fish.boosted {
+    transition: all 0.5s ease;
+    filter: brightness(1.5) drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+    animation-duration: 5s !important;
+    /* Speed up! */
+}
+
+/* Bubbles */
+.bubble {
+    position: absolute;
+    bottom: 10%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    z-index: 20;
+    animation: rise 4s linear forwards;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-80vh) translateX(20px);
+        opacity: 0;
+    }
+}
+
+/* --- UI Layer (Z: 1) --- */
+#app {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-title {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: var(--accent-color);
+}
+
+.glass-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-top: 5px;
+    letter-spacing: 0.05em;
+}
+
+.glass-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    flex: 1;
+}
+
+.habit-section h2 {
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#streak-display {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.5);
+    padding: 5px 10px;
+    border-radius: 12px;
+}
+
+/* Form */
+#add-habit-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#habit-input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.4);
+    font-family: inherit;
+    outline: none;
+    transition: background 0.2s;
+}
+
+#habit-input:focus {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.glass-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.glass-btn:active {
+    transform: scale(0.95);
+}
+
+/* List */
+.habit-list {
+    list-style: none;
+}
+
+.habit-item {
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.habit-item.completed {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--accent-color);
+}
+
+.habit-title {
+    font-size: 1rem;
+}
+
+.habit-item.completed .habit-title {
+    text-decoration: line-through;
+    color: var(--text-light);
+}
+
+.check-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.habit-item.completed .check-btn {
+    background: var(--accent-color);
+    color: white;
+}
+
+.delete-btn {
+    background: transparent;
+    border: none;
+    color: #ef5350;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.glass-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-light);
+    font-size: 0.8rem;
+}

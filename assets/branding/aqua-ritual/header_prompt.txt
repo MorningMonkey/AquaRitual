@@ -1,9 +1,23 @@
-Create a high-quality, abstract header image for "AquaRitual", a habit-building app with an aquarium theme.
-Visual style: Bright, pale colors with transparency. Glass texture, soft light, bubbling water, gentle gradients.
-Motifs: Water circulation, bubbles, water surface reflections, quiet luminosity.
-Mood: Calm, healing, concentration, gentle.
-Shapes: Rounded forms (bubbles, droplets), gentle waves.
-No text, no realistic fish or characters, no dark or heavy tones.
-Minimalist, premium, clean aesthetic suitable for a modern web app header.
-Usage: iOS app hero header (primary) and responsive web header (secondary).
-Composition: Keep safe margins for UI overlays; wide header-friendly layout that also crops well to mobile.
+Create a cinematic, premium wide header image for "AquaRitual".
+Concept: A calm digital aquarium where tropical fish and aquatic plants grow as you build habits.
+
+Composition (Header / Wide):
+- Keep the CENTER area clean with generous negative space for text overlay.
+- Place key aquarium elements more on the lower-left and lower-right edges.
+
+Aquarium Elements (Must include):
+- Tropical fish (realistic, premium, non-cartoon): e.g., subtle silhouettes or softly lit forms of neon tetra / guppy / angelfish.
+- Aquatic plants (aquascape): soft swaying stems, foreground carpet hints, layered depth (small -> medium -> tall).
+- Hardscape: smooth rounded stones + optional driftwood, sandy substrate.
+- Bubbles rising (streak metaphor): small vertical chains, delicate and minimal.
+
+Visual Style:
+- Glassmorphism: frosted glass UI-like panels or subtle glass refractions (very light, not dominant).
+- Lighting: underwater caustics, soft rays from above, clean highlights.
+- Colors: bioluminescent cyan, pale blue, white; airy and refreshing.
+- Depth: shallow depth of field (bokeh) for premium immersion.
+
+NO:
+- Any text or logos
+- Cartoon/anime fish, cute characters, toy-like shapes
+- Dark murky water, clutter, busy background, harsh shadows

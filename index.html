@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AquaRitual</title>
+    <!-- Google Fonts: Zen Kaku Gothic New -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Aquarium Layer (Background) -->
+    <div id="aquarium">
+        <div class="water"></div>
+        <div class="fish-layer" id="fishLayer">
+            <!-- Fish will be populated by CSS/JS or static here -->
+            <div class="fish fish-1"></div>
+            <div class="fish fish-2"></div>
+            <div class="fish fish-3"></div>
+        </div>
+        <div class="substrate"></div>
+        <div class="rocks">
+            <div class="rock rock-1"></div>
+            <div class="rock rock-2"></div>
+        </div>
+        <div class="plants" id="plantLayer">
+            <!-- Plants will be controlled by renderAquarium() -->
+            <div class="plant plant-1"></div>
+            <div class="plant plant-2"></div>
+            <div class="plant plant-3"></div>
+            <div class="plant plant-4"></div>
+            <div class="plant plant-5"></div>
+        </div>
+        <div id="bubbleLayer"></div>
+    </div>
+
+    <!-- UI Layer (Foreground) -->
+    <div id="app">
+        <header class="glass-header">
+            <h1 class="app-title">AquaRitual</h1>
+            <p class="tagline">Build habits. Grow calm.</p>
+        </header>
+
+        <main class="glass-container">
+            <!-- Habits Section -->
+            <section class="habit-section">
+                <div class="section-header">
+                    <h2>Habits</h2>
+                    <span id="streak-display">Streak: 0 days</span>
+                </div>
+
+                <form id="add-habit-form">
+                    <input type="text" id="habit-input" placeholder="新しい習慣を追加..." required autocomplete="off">
+                    <button type="submit" class="glass-btn">+</button>
+                </form>
+
+                <ul id="habit-list" class="habit-list">
+                    <!-- Habits inserted here -->
+                </ul>
+            </section>
+        </main>
+
+        <footer class="glass-footer">
+            <p>&copy; 2026 AquaRitual</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
