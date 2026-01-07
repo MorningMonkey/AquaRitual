@@ -1,0 +1,9 @@
+Create a high-quality, abstract header image for "AquaRitual", a habit-building app with an aquarium theme.
+Visual style: Bright, pale colors with transparency. Glass texture, soft light, bubbling water, gentle gradients.
+Motifs: Water circulation, bubbles, water surface reflections, quiet luminosity.
+Mood: Calm, healing, concentration, gentle.
+Shapes: Rounded forms (bubbles, droplets), gentle waves.
+No text, no realistic fish or characters, no dark or heavy tones.
+Minimalist, premium, clean aesthetic suitable for a modern web app header.
+Usage: iOS app hero header (primary) and responsive web header (secondary).
+Composition: Keep safe margins for UI overlays; wide header-friendly layout that also crops well to mobile.
