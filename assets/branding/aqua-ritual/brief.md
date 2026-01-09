@@ -10,9 +10,12 @@ Tagline: Build habits. Grow calm.
 - 期待価値: 習慣の継続、癒し、集中の維持
 
 ## 3. 想定プラットフォーム
-- 対象: iOS / Web（PWA含む）
-- 最優先: iOS
-- 画面前提: モバイル優先 / レスポンシブ対応
+- 対象: iOS / Android / Web（複数可）
+- 最優先: iOS | Android | Web
+- 画面前提: モバイル優先 | PC優先 | レスポンシブ
+- ビルド環境:
+  - Android: 任意（開発PCでOK）
+  - iOS: macOS（Xcode）でビルドする
 
 ## 4. トーン&マナー（言葉遣い）
 - 基調: 優しい・肯定的
